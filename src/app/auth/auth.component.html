@@ -1,0 +1,67 @@
+<form class="container formLogin" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h3 *ngIf="!isSignup">Login</h3>
+  <h3 *ngIf="isSignup">Cadastro</h3>
+  <div class="row justify-content-center" *ngIf="isSignup">
+    <div class="mb-3 col-6">
+      <label for="InputName" class="form-label">Nome</label>
+      <input
+        type="text"
+        class="form-control"
+        id="InputName"
+        formControlName="name"
+      />
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="mb-3 col-6">
+      <label for="InputEmail" class="form-label">E-mail</label>
+      <input
+        type="email"
+        class="form-control"
+        id="InputEmail"
+        formControlName="email"
+      />
+      <p *ngIf="verifyValidTouched('email')" style="color: red">
+        Formato de e-mail inválido
+      </p>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="mb-3 col-6">
+      <label for="InputPassword" class="form-label">Senha</label>
+      <input
+        type="password"
+        class="form-control"
+        id="InputPassword"
+        formControlName="password"
+      />
+      <p *ngIf="verifyValidTouched('password')" style="color: red">
+        A senha deve ter no mínimo 8 caracteres
+      </p>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="mb-3 col-2" *ngIf="isSignup">
+      <button
+        type="button"
+        class="btn btn-primary"
+        style="width: 100%"
+        (click)="changeSignup()"
+      >
+        Cancelar
+      </button>
+    </div>
+    <div class="mb-3 col-2">
+      <button type="submit" class="btn btn-primary" style="width: 100%">
+        {{ isSignup ? "Cadastrar" : "Entrar" }}
+      </button>
+    </div>
+  </div>
+  <div class="row justify-content-center" *ngIf="!isSignup">
+    <div class="col-6">
+      <p>
+        Não possui conta? <a (click)="changeSignup()"><b>Inscreva-se</b></a>
+      </p>
+    </div>
+  </div>
+</form>
