@@ -2,6 +2,7 @@ import { User } from './../models/user';
 import { AuthService } from './auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -15,7 +16,9 @@ export class AuthComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.form = this.formBuilder.group({
       email: ['', [Validators.email, Validators.required]],
@@ -40,7 +43,11 @@ export class AuthComponent implements OnInit {
         }
         this.authService.signup(this.user).subscribe(res=>console.log(res))
       }else{
-        this.authService.login(this.form.controls['email'].value, this.form.controls['password'].value).subscribe(res=>console.log(res))
+        this.authService.login(this.form.controls['email'].value, this.form.controls['password'].value).subscribe(res=>{
+          localStorage.setItem('token', res.token)
+          localStorage.setItem('name', res.name)
+          this.router.navigate([''])
+        })
       }
     }
   }
