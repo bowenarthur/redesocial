@@ -1,0 +1,14 @@
+<form class="container" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h4>Novo post</h4>
+  <div class="mb-3">
+    <label for="content" class="form-label">Conteúdo</label>
+    <textarea class="form-control" id="content" rows="3" formControlName="content"></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="imageUrl" class="form-label">Url da imagem</label>
+    <input type="text" class="form-control" id="imageUrl" formControlName="imageUrl"/>
+  </div>
+  <div class="mb-3">
+    <button type="submit" class="btn btn-primary">Criar Post</button>
+  </div>
+</form>

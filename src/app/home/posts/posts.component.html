@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header">{{ post.user.name }}</div>
+  <div class="card-body">
+    <p class="card-text">
+      {{ post.content }}
+    </p>
+    <img class="w-75" *ngIf="post.imageUrl" [src]="post.imageUrl">
+  </div>
+  <div class="card-footer text-muted">
+    <a>Curtir</a>
+    <small class="float-end">Publicado em {{ date }}</small>
+  </div>
+</div>

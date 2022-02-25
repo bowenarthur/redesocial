@@ -1,22 +1,4 @@
-.white {
-  color: white;
-  button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    margin: 0 10px;
-    color: white;
-    &:hover {
-      color: lightgray;
-    }
-  }
-  a {
-    cursor: pointer;
-  }
-  span {
-    color: white;
-  }
-  h4 {
-    margin: 5px;
-  }
+.center{
+    display: flex;
+    justify-content: center;
 }

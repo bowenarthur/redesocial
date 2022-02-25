@@ -22,12 +22,9 @@ export class AuthGuard implements CanActivate {
   }
 
   private verificarAcesso() {
-    if (this.authService.userAuthenticated()) {
+    if (this.authService.verifyToken()) {
       return true;
     }
-
-    this.router.navigate(['auth']);
-
     return false;
   }
 }
