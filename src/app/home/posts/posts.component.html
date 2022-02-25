@@ -1,10 +1,20 @@
 <div class="card">
-  <div class="card-header">{{ post.user.name }}</div>
+  <div class="card-header">
+    <h5 style="display: inline">{{ post.user.name }}</h5>
+    <button
+      class="btn btn-outline-danger float-end"
+      style="padding: 1px 5px"
+      *ngIf="post.user.name == getName()"
+      (click)="deletePost()"
+    >
+      <i class="bi-trash" style="width: 1em"></i>
+    </button>
+  </div>
   <div class="card-body">
     <p class="card-text">
       {{ post.content }}
     </p>
-    <img class="w-75" *ngIf="post.imageUrl" [src]="post.imageUrl">
+    <img class="w-75" *ngIf="post.imageUrl" [src]="post.imageUrl" />
   </div>
   <div class="card-footer text-muted">
     <a>Curtir</a>

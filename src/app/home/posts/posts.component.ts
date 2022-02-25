@@ -1,3 +1,4 @@
+import { HomeService } from './../home.service';
 import { Post } from './../../models/post';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -10,7 +11,7 @@ export class PostsComponent implements OnInit {
   @Input() post!: Post
   date!: string
 
-  constructor() {
+  constructor(private homeService: HomeService) {
   }
 
   ngOnInit(): void {
@@ -24,5 +25,16 @@ export class PostsComponent implements OnInit {
         ? '0' + (date.getMonth() + 1)
         : date.getMonth() + 1;
     return day + '/' + month + '/' + date.getFullYear();
+  }
+
+  getName(){
+    return localStorage.getItem('name')
+  }
+
+  deletePost(){
+    if(confirm("Você tem certeza que quer excluir esse post?")){
+      this.homeService.deletePost(this.post._id)
+      location.reload()
+    }
   }
 }

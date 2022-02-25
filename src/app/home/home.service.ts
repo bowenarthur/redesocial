@@ -27,4 +27,14 @@ export class HomeService {
     };
     return this.http.get<GetResponse>('http://localhost:3000', options);
   }
+
+  deletePost(id: string){
+    const header = new HttpHeaders({
+      Authorization: `Bearer ${this.getToken()}`,
+    });
+    const options = {
+      headers: header
+    };
+    return this.http.delete(`http://localhost:3000/${id}`, options).subscribe();
+  }
 }
