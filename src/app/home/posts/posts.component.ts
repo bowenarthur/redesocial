@@ -1,6 +1,7 @@
 import { HomeService } from './../home.service';
 import { Post } from './../../models/post';
 import { Component, Input, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-posts',
@@ -8,14 +9,16 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./posts.component.scss'],
 })
 export class PostsComponent implements OnInit {
-  @Input() post!: Post
-  date!: string
+  @Input() post!: Post;
+  date!: string;
 
-  constructor(private homeService: HomeService) {
-  }
+  constructor(
+    private homeService: HomeService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
-    this.date = this.getFormattedDate(new Date(this.post.createdAt))
+    this.date = this.getFormattedDate(new Date(this.post.createdAt));
   }
 
   getFormattedDate(date: Date) {
@@ -27,14 +30,18 @@ export class PostsComponent implements OnInit {
     return day + '/' + month + '/' + date.getFullYear();
   }
 
-  getName(){
-    return localStorage.getItem('name')
+  getName() {
+    return localStorage.getItem('name');
   }
 
-  deletePost(){
-    if(confirm("Você tem certeza que quer excluir esse post?")){
-      this.homeService.deletePost(this.post._id)
-      location.reload()
+  getSanitizeUrl(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
+
+  deletePost() {
+    if (confirm('Você tem certeza que quer excluir esse post?')) {
+      this.homeService.deletePost(this.post._id);
+      location.reload();
     }
   }
 }

@@ -12,16 +12,19 @@ export class CreatePostService {
     return localStorage.getItem('token')
   }
 
-  createPost(content: string, imageUrl?: string){
+  createPost(body: Object){
     const header = new HttpHeaders({'Authorization': `Bearer ${this.getToken()}`})
-    let body = {
-      content: content,
-      imageUrl: ''
-    }
-    imageUrl ? body.imageUrl = imageUrl : null
     const options = {
       headers: header
     }
     return this.http.post('http://localhost:3000',body, options)
+  }
+
+  uploadImage(body: FormData){
+    const header = new HttpHeaders({'Authorization': `Bearer ${this.getToken()}`})
+    const options = {
+      headers: header
+    }
+    return this.http.post('http://localhost:3000/fileupload',body)
   }
 }
