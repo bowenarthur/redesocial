@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GetResponse } from './../models/getResponse';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class HomeService {
       params: params,
       headers: header,
     };
-    return this.http.get<GetResponse>('http://localhost:3000', options);
+    return this.http.get<GetResponse>(`${environment.apiUrl}`, options);
   }
 
   deletePost(id: string){
@@ -35,6 +36,6 @@ export class HomeService {
     const options = {
       headers: header
     };
-    return this.http.delete(`http://localhost:3000/${id}`, options).subscribe();
+    return this.http.delete(`${environment.apiUrl}/${id}`, options).subscribe();
   }
 }

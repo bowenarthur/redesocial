@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class CreatePostService {
     const options = {
       headers: header
     }
-    return this.http.post('http://localhost:3000',body, options)
+    return this.http.post(`${environment.apiUrl}`,body, options)
   }
 
   uploadImage(body: FormData){
@@ -25,6 +26,6 @@ export class CreatePostService {
     const options = {
       headers: header
     }
-    return this.http.post('http://localhost:3000/fileupload',body)
+    return this.http.post(`${environment.apiUrl}/fileupload`,body)
   }
 }
