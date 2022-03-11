@@ -4,10 +4,6 @@
     <label for="content" class="form-label">Conteúdo</label>
     <textarea class="form-control" id="content" rows="3" formControlName="content"></textarea>
   </div>
-  <!--<div class="mb-3">
-    <label for="imageUrl" class="form-label">Url da imagem</label>
-    <input type="text" class="form-control" id="imageUrl" formControlName="imageUrl"/>
-  </div>-->
   <div class="mb-3">
     <label for="image" class="form-label">Imagem</label>
     <input class="form-control" type="file" id="image" (change)="onFileChange($event)" formControlName="image">

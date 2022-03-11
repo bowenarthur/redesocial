@@ -2,14 +2,14 @@
   class="row justify-content-center"
   *ngIf="this.router.routerState.snapshot.url != '/my-posts'"
 >
-  <div class="col-8">
+  <div class="col-10 col-md-8">
     <app-create-post></app-create-post>
   </div>
 </div>
 <br />
 <div *ngIf="show">
   <div class="row justify-content-center" *ngFor="let post of posts">
-    <div class="col-8 mb-2">
+    <div class="col-10 col-md-8 mb-2">
       <app-posts [post]="post"></app-posts>
     </div>
   </div>
